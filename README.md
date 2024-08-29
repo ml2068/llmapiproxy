@@ -1,2 +1,2 @@
 # llmapiproxy
-easy api call from local go through vps proxy
+Easy llm api call from local go through vps proxy
