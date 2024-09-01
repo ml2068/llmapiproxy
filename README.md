@@ -15,7 +15,6 @@ This is a simple HTTP reverse proxy server written in Go. It can forward receive
 *   **Response Header Logging**: The server can log the response headers of the target server.
 
 ## Usage
-
 1. Set environment variables PORT, TARGET, and APIKEY
 
 2. Run the program 
@@ -37,7 +36,7 @@ This is a simple HTTP reverse proxy server written in Go. It can forward receive
 The server can be configured using environment variables. The following environment variables are supported:
 
 *   `PORT`: The port number to listen on.
-*   `TARGET`: The URL of the target server.
+*   `TARGET`: The URL of the target llm server.
 *   `API_KEY`: The API key to use for llm authorization.
 
 ## License
