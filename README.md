@@ -26,7 +26,7 @@ The server can be configured using environment variables. The following environm
 
 *   `PORT`: The port number to listen on.
 *   `TARGET`: The URL of the target server.
-*   `API_KEY`: The API key to use for authorization.
+*   `API_KEY`: The API key to use for llm authorization.
 
 ## Requirements
 
