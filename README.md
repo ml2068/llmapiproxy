@@ -33,4 +33,4 @@ The server can be configured using environment variables. The following environm
 
 ## License
 
-This software is licensed under the Apache-2.0 license
+the Apache-2.0 license
