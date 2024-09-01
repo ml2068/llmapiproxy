@@ -15,15 +15,15 @@ This is a simple HTTP reverse proxy server written in Go. It can forward receive
 *   **Response Header Logging**: The server can log the response headers of the target server.
 
 ## Usage
-1. Set environment variables PORT, TARGET, and APIKEY
+*  Set environment variables PORT, TARGET, and APIKEY
 
-2. Run the program 
+*  Run the program 
 
-3.check daemon running
+*  check daemon running
 
-4.check api.log file
+*  check api.log file
 
-5.stop running（kill PID)
+*  stop running（kill PID)
 
 `go run apiproxy. -daemon`
 
