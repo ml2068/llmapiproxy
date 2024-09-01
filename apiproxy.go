@@ -115,6 +115,15 @@ func main() {
     flag.BoolVar(&runDaemon, daemonFlag, false, "Run as daemon")
     flag.Parse()
 
+    // Check if the file exists
+	if _, err := os.Stat("api.log"); os.IsNotExist(err) {
+		// Create the file if it doesn't exist
+		logFile, err := os.Create("api.log")
+		if err != nil {
+			log.Fatal(err)
+		}
+		logFile.Close()
+	}
     logFile, err := os.OpenFile("api.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
     if err != nil {
         log.Fatal(err)
