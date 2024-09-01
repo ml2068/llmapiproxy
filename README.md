@@ -15,10 +15,21 @@ This is a simple HTTP reverse proxy server written in Go. It can forward receive
 *   **Response Header Logging**: The server can log the response headers of the target server.
 
 ## Usage
+1. Set environment variables PORT, TARGET, and APIKEY 
 
-To use the server, simply compile the code and run the resulting executable. The server will start listening on the port specified in the `PORT` environment variable.
+2. Run the program 
 
-You can also run the server in daemon mode by passing the `-daemon` flag when running the executable.
+`go run apiproxy. -daemon`
+
+3.check daemon running
+
+`ps -ef | grep go`
+
+4.check api.log file
+
+5.stop running（kill PID)
+
+`kill 732924`
 
 ## Configuration
 
@@ -27,22 +38,6 @@ The server can be configured using environment variables. The following environm
 *   `PORT`: The port number to listen on.
 *   `TARGET`: The URL of the target server.
 *   `API_KEY`: The API key to use for llm authorization.
-
-## Requirements
-
-*   Go 1.14 or later
-*   `github.com/joho/godotenv` package
-*   `net/http` package
-*   `net/http/httputil` package
-*   `os` package
-*   `os/exec` package
-*   `strconv` package
-*   `strings` package
-*   `fmt` package
-
-## Installation
-
-To install the server, simply clone the repository and compile the code using the `go build` command.
 
 ## License
 
