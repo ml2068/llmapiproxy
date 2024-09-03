@@ -86,8 +86,10 @@ func ReverseProxyHandler(w http.ResponseWriter, r *http.Request) {
 
 func logPrintResponseHeaders(w http.ResponseWriter) {
     headers := w.Header().Clone()
+    count := 2
     for key, values := range headers {
-        log.Printf("[*] %s: %s\n", key, strings.Join(values, ", "))
+        log.Printf("[%d] %s: %s\n", count, key, strings.Join(values, ", "))
+        count++
     }
 }
 
@@ -124,12 +126,19 @@ func main() {
 		}
 		logFile.Close()
 	}
+	
     logFile, err := os.OpenFile("api.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
     if err != nil {
         log.Fatal(err)
     }
+	
     defer logFile.Close()
     log.SetOutput(logFile)
+	
+    defer func() {
+        logFile.Sync()
+        logFile.Close()
+    }()
 
     log.Printf("[1] PID: %d PPID: %d ARG: %s\n", os.Getpid(), os.Getppid(), os.Args)
 
