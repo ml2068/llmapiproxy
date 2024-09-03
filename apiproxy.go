@@ -25,72 +25,81 @@
 package main
 
 import (
-    "flag"
-    "log"
-    "net/http"
-    "net/http/httputil"
-    "os"
-    "os/exec"
-    "strconv"
-    "strings"
-    "fmt"
-    "github.com/joho/godotenv"
+	"flag"
+	"log"
+	"net/http"
+	"net/http/httputil"
+	"os"
+	"os/exec"
+	"strconv"
+	"strings"
+	"fmt"
+	"sort"
+	"github.com/joho/godotenv"
 )
 
 const (
-    daemonFlag = "daemon"
+	daemonFlag = "daemon"
 )
 
 var (
-    runDaemon bool
+	runDaemon bool
 )
 
 func init() {
-    if err := godotenv.Load(); err!= nil {
-        log.Fatal("Error loading .env file")
-    }
+	if err := godotenv.Load(); err!= nil {
+		log.Fatal("Error loading .env file")
+	}
 }
 
 func getEnvVar(key string) string {
-    value := os.Getenv(key)
-    if value == "" {
-        log.Fatalf("%s environment variable is not set", key)
-    }
-    return value
+	value := os.Getenv(key)
+	if value == "" {
+		log.Fatalf("%s environment variable is not set", key)
+	}
+	return value
 }
 
 func getPort() int {
-    portStr := getEnvVar("PORT")
-    port, err := strconv.Atoi(portStr)
-    if err != nil {
-        log.Fatal("Invalid port number")
-    }
-    return port
+	portStr := getEnvVar("PORT")
+	port, err := strconv.Atoi(portStr)
+	if err != nil {
+		log.Fatal("Invalid port number")
+	}
+	return port
 }
 
 func ReverseProxyHandler(w http.ResponseWriter, r *http.Request) {
-    log.Printf("[1] receive a request from %s, request header: %s: \n", r.RemoteAddr, r.Header)
-    target := getEnvVar("target")
-    apiKey := getEnvVar("apiKey")
-    director := func(req *http.Request) {
-        req.URL.Scheme = "https"
-        req.URL.Host = target
-        req.Host = target
-        authHeader := fmt.Sprintf("Bearer %s", apiKey)
-        req.Header.Set("Authorization", authHeader)
-    }
-    proxy := &httputil.ReverseProxy{Director: director}
-    proxy.ServeHTTP(w, r)
-    logPrintResponseHeaders(w)
+	log.Printf("[1] receive a request from %s, request header: %s: \n", r.RemoteAddr, r.Header)
+	target := getEnvVar("target")
+	apiKey := getEnvVar("apiKey")
+	director := func(req *http.Request) {
+		req.URL.Scheme = "https"
+		req.URL.Host = target
+		req.Host = target
+		authHeader := fmt.Sprintf("Bearer %s", apiKey)
+		req.Header.Set("Authorization", authHeader)
+	}
+	proxy := &httputil.ReverseProxy{Director: director}
+	proxy.ServeHTTP(w, r)
+	logPrintResponseHeaders(w)
 }
 
 func logPrintResponseHeaders(w http.ResponseWriter) {
     headers := w.Header().Clone()
+    keys := make([]string, 0, len(headers))
+    for key := range headers {
+        keys = append(keys, key)
+    }
+    sort.Strings(keys)
     count := 2
-    for key, values := range headers {
+    for _, key := range keys {
+        values := headers[key]
         log.Printf("[%d] %s: %s\n", count, key, strings.Join(values, ", "))
         count++
     }
+}
+
 }
 
 func stripSlice(slice []string, element string) []string {
