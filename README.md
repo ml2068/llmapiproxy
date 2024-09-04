@@ -36,4 +36,5 @@ The server can be configured using environment variables. The following environm
 
 ## License
 
-Apache-2.0 license
+[Apache-2.0 license](./LICENSE)
+
