@@ -1,4 +1,4 @@
-# llmapiproxy
+# llmapiproxy [简体中文](./README_cn.md)
 Easy llm api call from local go through vps proxy
 
 # HTTP Reverse Proxy Server
