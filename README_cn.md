@@ -1,6 +1,6 @@
 # llmapiproxy 
 
-通过 VPS 代理轻松调用本地 LLM API
+通过 VPS 代理，轻松从本地远程调用 LLM API
 
 HTTP 反向代理服务器 
 
@@ -44,4 +44,4 @@ HTTP 反向代理服务器
 
 ## 许可证 
 
-Apache-2.0 许可证
+[Apache-2.0 许可证](./LICENSE)
