@@ -1,6 +1,6 @@
 # llmapiproxy 
 
-通过 VPS 代理，轻松从本地远程调用 LLM API
+通过 VPS 代理，从本地轻松调用 LLM API
 
 HTTP 反向代理服务器 
 
