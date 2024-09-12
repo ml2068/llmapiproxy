@@ -19,13 +19,11 @@ This is a simple HTTP reverse proxy server written in Go. It can forward receive
 
 ## Usage
 To run the program, set environment variables PORT, TARGET, and APIKEY, then start the program. Check the daemon process and api.log file afterwards. Stop the program by killing the process (kill PID).
-
-`go run apiproxy. -daemon`
-
-`ps -ef | grep go`
-
-`kill 732924`
-
+```
+go run apiproxy. -daemon
+ps -ef | grep go
+kill 732924
+```
 ## Configuration
 
 The server can be configured using environment variables. The following environment variables are supported:
