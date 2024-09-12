@@ -25,12 +25,11 @@ HTTP 反向代理服务器
 检查守护进程和 api.log 文件。
 
 通过杀死进程（kill PID）停止程序。
-
-`go run apiproxy.go -daemon`
-
-`ps -ef | grep go`
-
-`kill 732924`
+```
+go run apiproxy.go -daemon
+ps -ef | grep go
+kill 732924
+```
 
 ## 配置 
 
