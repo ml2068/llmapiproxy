@@ -27,7 +27,9 @@ HTTP 反向代理服务器
 通过杀死进程（kill PID）停止程序。
 ```
 go run apiproxy.go -daemon
+pgrep -f go
 ps -ef | grep go
+ps -ef
 kill 732924
 ```
 
