@@ -1,0 +1,29 @@
+version: '3'
+services:
+  ss:
+    image: shadowsocks/shadowsocks-libev
+    restart: on-failure    
+    environment:
+      - METHOD=aes-256-cfb
+      - PASSWORD= xxxxx
+    ports:
+      - "xxxx:xxxx"
+    networks:
+      - my_network
+
+  bbr:
+    image: wuqz/lkl:latest
+    restart: on-failure
+    environment:
+      - TARGET_HOST=ss
+      - TARGET_PORT=xxxx
+      - BIND_PORT=xxxx
+    privileged: true
+    depends_on:
+      - ss
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
